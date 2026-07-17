@@ -125,4 +125,6 @@ class TemplateRenderer:
         non_empty = [b for b in blocks if b.strip()]
         if not non_empty:
             raise TemplateRenderError("No code blocks to render.")
-        return "\n".join(non_empty) + "\n"
+        # Each block already ends with \n; joining with \n gives
+        # the blank-line separators.  No extra trailing newline needed.
+        return "\n".join(non_empty)
